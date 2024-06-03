@@ -50,7 +50,7 @@ router.put('/:id', async (req, res) => {
   try {
     let item = await Item.findByPk(req.params.id)
     if (!card) return res.sendStatus(404)
-    item = await item.update({ ...card, ...req.body })
+    item = await item.update({ ...item, ...req.body })
     res.send(card)
   } catch (err) {
     res.sendStatus(500)
