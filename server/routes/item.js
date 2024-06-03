@@ -31,7 +31,7 @@ router.get('/', async (req, res) => {
 })
 
 /**
- * Create a new card
+ * Create a new item
  */
 router.post('/', async (req, res) => {
   try {
@@ -44,7 +44,7 @@ router.post('/', async (req, res) => {
 })
 
 /**
- * Update a card
+ * Update an item
  */
 router.put('/:id', async (req, res) => {
   try {
@@ -59,7 +59,7 @@ router.put('/:id', async (req, res) => {
 })
 
 /**
- * Delete a card
+ * Delete an item
  */
 router.delete('/:id', async (req, res) => {
   try {
