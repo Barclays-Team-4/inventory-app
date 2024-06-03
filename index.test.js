@@ -1,7 +1,7 @@
 const request = require("supertest")
 const app = require("./server/app.js")
 const { Item } = require("./server/routes/index.js")
-const syncSeed = require("./server/seed.js")
+const seed = require("./server/seed.js")
 let restQuantity;
 
  
