@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { items } from "../server/seedData.js";
+import { items } from "../../../server/seedData";
 
 function Form() {
 
