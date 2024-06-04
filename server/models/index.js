@@ -9,7 +9,7 @@ const Sauce = sequelize.define("sauce", {
 const Item = sequelize.define("item", {
   name: Sequelize.STRING,
   description: Sequelize.STRING,
-  price: Sequelize.FLOAT,
+  price: Sequelize.DOUBLE,
   category: Sequelize.STRING,
   image: Sequelize.STRING,
 });
