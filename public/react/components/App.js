@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { SaucesList } from './SaucesList';
+import { items } from "./seedData.js";
 import { Form } from "./Form.js";
 
 // import and prepend the api url to any fetch calls

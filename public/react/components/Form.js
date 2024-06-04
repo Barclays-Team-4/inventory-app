@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { items } from "../server/seedData.js";
 
 function Form() {
 
@@ -8,13 +9,26 @@ function Form() {
     const [category, setCategory] = useState("");
     const [image, setImage] = useState("");
 
+    const [items, setItems] = useState(items)
+
+    function handleSubmit(event) {
+      e.preventDefault();
+      setItems([...items, { name, description, price, category, image }]);
+      setName("");
+      setDescription("");
+      setPrice();
+      setCategory("");
+      setImage("");
+  }
+
   return (
     <>
-      <form>
+      <form id="form"
+      onSubmit={handleSubmit}>
         <label>
           Name:
           <input value={name}
-          onChange={(event) => setFirstName(event.target.value)} />
+          onChange={(event) => setName(event.target.value)} />
         </label>
 
         <label>
@@ -41,9 +55,13 @@ function Form() {
           //<img src={props.sauce.image} alt={props.sauce.name} />
           onChange={(event) => setImage(event.target.value)}/>
         </label>
+
+        <button type="submit" className="btn">
+          Submit form
+        </button>
+
       </form>
-      <p className="name">Your name is {firstName}</p>
-      <p className="age">Your age is {age}</p>
+      
     </>
   );
 }
