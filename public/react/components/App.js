@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { SaucesList } from './SaucesList';
-import { items } from "../../../server/seedData.js";
+//import { items } from "../../../server/seedData.js";
 import { Form } from "./Form.js";
 
 // import and prepend the api url to any fetch calls
@@ -8,28 +8,36 @@ import apiURL from '../api';
 
 export const App = () => {
 
-	const [sauces, setSauces] = useState([]);
+	const [items, setItems] = useState([]);
 
 		useEffect(() => {
-			async function fetchSauces(){
+			async function fetchItems(){
 				try {
-					const response = await fetch(`${apiURL}/sauces`);
-					const saucesData = await response.json();
+					const response = await fetch(`${apiURL}/items`);
+					const itemsData = await response.json();
 					
-					setSauces(saucesData);
+					setItems(itemsData);
 				} catch (err) {
 					console.log("Oh no an error! ", err)
 				}
 			}
-		fetchSauces();
+		fetchItems();
 	}, []);
 
 	return (
 		<main>	
-      <h1>Sauce Store</h1>
+      <h1>Inventory App</h1>
+		<ul>
+	  	{items.map(item => (
+			<li key={item.id}>
+				<h2>{item.name}</h2>
+				<img src={item.image} alt="" />
+			</li>
+	  	))}
+	  	</ul>
 			<h2>All things 🔥</h2>
 			<SaucesList sauces={sauces} />
-			<Form />
+			<Form items={items}/>
 		</main>
 	)
 }
