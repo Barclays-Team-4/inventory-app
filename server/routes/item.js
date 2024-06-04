@@ -20,13 +20,12 @@ router.get('/:id', async (req, res) => {
 /**
  * Get all items
  */
-router.get('/', async (req, res) => {
+router.get('/', async (req, res, next) => {
   try {
     const items = await Item.findAll()
     res.send(items)
-  } catch (err) {
-    res.sendStatus(500)
-    console.error(err)
+  } catch (error) {
+    next(error);
   }
 })
 
