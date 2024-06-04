@@ -21,6 +21,31 @@ export const App = () => {
 		setItems([...items, newItem]);
 	}
 
+	function confirmDelete(id) {
+		const confirmed = window.confirm("Are you sure you want to delete this item");
+
+		if (confirmed) {
+			deleteItem(id);
+		}
+	}
+
+	async function deleteItem(id) {
+		await fetch(`${apiURL}/items/${id}`, {
+			method: "DELETE",
+		});
+		
+		const filteredItems = items.filter(item => {
+			if (item.id === id) {
+				return false;
+			} else {
+				return true;
+			}
+		});
+
+		setItems(filteredItems);
+		setCurrentItem(null);
+	}
+
 	useEffect(() => {
 		async function fetchItems() {
 			try {
@@ -38,10 +63,18 @@ export const App = () => {
 	// SINGLE ITEM VIEW
 	if (currentItem) {
 		return (
-			<>
+			<main>
 				<h1>{currentItem.name}</h1>
-				<button onClick={() => setCurrentItem(null)}>All Items</button>
-			</>
+				<p>£{currentItem.price.toFixed(2)}</p>
+				<img src={currentItem.image} alt="" />
+				<p>{currentItem.description}</p>
+				<p>
+					<button onClick={() => setCurrentItem(null)}>All Items</button>
+				</p>
+				<p>
+					<button onClick={() => confirmDelete(currentItem.id)}>Delete Item</button>
+				</p>
+			</main>
 		);
 	}
 
