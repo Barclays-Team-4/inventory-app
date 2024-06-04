@@ -6,9 +6,9 @@ const router = express.Router()
 /**
  * Get an item by its id
  */
-router.get('/:id', async (req, res) => {
+router.get('/:name', async (req, res) => {
   try {
-    const item = await Item.findByPk(req.params.id)
+    const item = await Item.findByPk(req.params.name)
     if (!item) return res.sendStatus(404)
     res.send(item)
   } catch (err) {
