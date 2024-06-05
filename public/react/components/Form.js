@@ -20,37 +20,38 @@ function Form(props) {
 	return (
 		<>
 			<form id="form" onSubmit={handleSubmit}>
-				<label>
-					Name:
+				<p>
+					<label>Name:</label>
+					<br />
 					<input value={name} onChange={event => setName(event.target.value)} />
-				</label>
+				</p>
 
-				<label>
-					Description:
-					<input value={description} onChange={event => setDescription(event.target.value)} />
-				</label>
+				<p>
+					<label>Description:</label>
+					<br />
+					<textarea value={description} onChange={event => setDescription(event.target.value)} />
+				</p>
 
-				<label>
-					Price:
+				<p>
+					<label>Price:</label>
+					<br />
 					<input type="number" value={price} step={0.01} onChange={event => setPrice(event.target.value)} />
-				</label>
+				</p>
 
-				<label>
-					Category:
+				<p>
+					<label>Category:</label>
+					<br />
 					<input value={category} onChange={event => setCategory(event.target.value)} />
-				</label>
+				</p>
 
-				<label>
-					Image:
-					<input
-						value={image}
-						//<img src={props.sauce.image} alt={props.sauce.name} />
-						onChange={event => setImage(event.target.value)}
-					/>
-				</label>
+				<p>
+					<label>Image:</label>
+					<br />
+					<input value={image} onChange={event => setImage(event.target.value)} />
+				</p>
 
 				<button type="submit" className="btn">
-					Submit form
+					Add Item
 				</button>
 			</form>
 		</>
