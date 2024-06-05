@@ -98,7 +98,7 @@ export const App = () => {
 	return (
 		<main>
 			<h1>Inventory App</h1>
-			<button onClick={() => setIsFormShowing(!isFormShowing)}>
+			<button className="showForm" onClick={() => setIsFormShowing(!isFormShowing)}>
 				{isFormShowing ? "Hide Form" : "Show Form"}
 			</button>
 			{isFormShowing && (
@@ -108,12 +108,12 @@ export const App = () => {
 			<ul>
 				{items.map(item => (
 					<li key={item.id}>
-						<h2>
+						<h2 className="itemName">
 							<button onClick={() => setCurrentItem(item)}>{item.name}</button>
 						</h2>
 						<h3>£{item.price}</h3>
 						<img src={item.image} alt="" />
-						<h3>{item.description}</h3>
+						<h3 className="description">{item.description}</h3>
 						<h3>{item.category}</h3>
 					</li>
 				))}
