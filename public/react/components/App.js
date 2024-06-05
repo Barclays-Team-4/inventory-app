@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Form } from "./Form.js";
-import { updateForm } from "./updateForm.js";
+import { UpdateForm } from "./UpdateForm.js";
 
 // import and prepend the api url to any fetch calls
 import apiURL from "../api";
@@ -8,7 +8,9 @@ import apiURL from "../api";
 export const App = () => {
 	const [items, setItems] = useState([]);
 	const [currentItem, setCurrentItem] = useState(null);
-	const [isFormShowing, setIsFormShowing] = useState(null);
+	const [isFormShowing, setIsFormShowing] = useState(false);
+	
+	const [isUpdateFormShowing, setIsUpdateFormShowing] = useState(false);
 
 	async function addItem(data) {
 		const response = await fetch(`${apiURL}/items`, {
@@ -18,13 +20,12 @@ export const App = () => {
 			},
 			body: JSON.stringify(data),
 		});
-
 		const newItem = await response.json();
 		setItems([...items, newItem]);
 		setIsFormShowing(false);
 	}
 // update
-	async function updateItem(data) {
+	async function updateItem(id, data) {
 		await fetch(`${apiURL}/items/${id}`, {
 			method: "PUT",
 			headers: {
@@ -33,8 +34,19 @@ export const App = () => {
 			body: JSON.stringify(data),
 		});
 
+		if (response.ok) {		
 		const updatedItem = await response.json();
-		setCurrentItem(updatedItem);
+		const index = index.findIndex(item => {
+			if (item.id === id) {
+				return true;
+			} else {
+				return false;
+			}
+		});
+		const updatedItems = items.toSpliced(index, 1, updatedItem);
+		setItems(updatedItems);
+		setCurrentItem(null);
+		}
 	}
 
 	function confirmDelete(id) {
@@ -80,6 +92,12 @@ export const App = () => {
 	if (currentItem) {
 		return (
 			<main>
+				<button onClick={() => setIsUpdateFormShowing(!isUpdateFormShowing)}>
+					{isUpdateFormShowing ? "Hide Form" : "Show Form"}
+				</button>
+				{isUpdateFormShowing &&	(
+					<UpdateForm {...currentItem} />
+				)}
 				<h1>{currentItem.name}</h1>
 				<p>£{currentItem.price.toFixed(2)}</p>
 				<img src={currentItem.image} alt={currentItem.name} />
@@ -90,10 +108,9 @@ export const App = () => {
 				<p>
 					<button onClick={() => confirmDelete(currentItem.id)}>Delete Item</button>
 				</p>
-				<updateForm updateItem={updateItem} />
 			</main>
 		);
-	}
+	};
 
 	return (
 		<main>
@@ -104,7 +121,6 @@ export const App = () => {
 			{isFormShowing && (
 				<Form addItem={addItem} />
 			)}
-
 			<ul>
 				{items.map(item => (
 					<li key={item.id}>
