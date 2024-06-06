@@ -1,6 +1,7 @@
 * {
   margin: 0;
   box-sizing: border-box;
+  
 }
 
 
@@ -28,12 +29,12 @@ li {
   box-sizing: border-box;
   float: left;
   text-align: center;
-  border-radius: 20px;
+  border-radius: 10px;
   padding-top: 10px;
   box-shadow: 0 14px 28px Orgba(0,0,0,0.25),
   0 10px 10px rgba(0,0,0,0.22);
   transition: .4s;
-  background-color: rgb(193, 199, 199);
+  background-color: rgb(223, 214, 214);
   
 
 }
@@ -90,8 +91,15 @@ button {
   text-decoration: none;
   cursor: pointer;
   width: 200px;
+}
+.showButton {
+  margin-top: 2%;
+  margin-bottom: 2%;
 
 }
+
+
+
 
 button:hover {
   box-shadow: 0 3px 6px rgba(0,0,0,0.16),

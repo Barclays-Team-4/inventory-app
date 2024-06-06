@@ -93,7 +93,7 @@ export const App = () => {
 		return (
 			<main>
 				<h1>{currentItem.name}</h1>
-				<button onClick={() => setIsUpdateFormShowing(!isUpdateFormShowing)}>
+				<button className="showButton" onClick={() => setIsUpdateFormShowing(!isUpdateFormShowing)}>
 					{isUpdateFormShowing ? "Hide Form" : "Show Form"}
 				</button>
 				{isUpdateFormShowing && <UpdateForm {...currentItem} updateItem={updateItem} />}
@@ -113,7 +113,7 @@ export const App = () => {
 	return (
 		<main>
 			<h1>Inventory App</h1>
-			<button className="showForm" onClick={() => setIsFormShowing(!isFormShowing)}>
+			<button className="showButton" onClick={() => setIsFormShowing(!isFormShowing)}>
 				{isFormShowing ? "Hide Form" : "Show Form"}
 			</button>
 			{isFormShowing && <Form addItem={addItem} />}
