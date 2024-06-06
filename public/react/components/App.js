@@ -121,7 +121,7 @@ export const App = () => {
 				{items.map(item => (
 					<li key={item.id}>
 						<h2 className="itemName">
-							<button onClick={() => setCurrentItem(item)}>{item.name}</button>
+							<button className="itemNameButton" onClick={() => setCurrentItem(item)}>{item.name}</button>
 						</h2>
 						<h3>£{item.price}</h3>
 						<img src={item.image} alt="" />
