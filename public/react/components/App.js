@@ -9,7 +9,7 @@ export const App = () => {
 	const [items, setItems] = useState([]);
 	const [currentItem, setCurrentItem] = useState(null);
 	const [isFormShowing, setIsFormShowing] = useState(false);
-	
+
 	const [isUpdateFormShowing, setIsUpdateFormShowing] = useState(false);
 
 	async function addItem(data) {
@@ -24,9 +24,9 @@ export const App = () => {
 		setItems([...items, newItem]);
 		setIsFormShowing(false);
 	}
-// update
+	// update
 	async function updateItem(id, data) {
-		await fetch(`${apiURL}/items/${id}`, {
+		const response = await fetch(`${apiURL}/items/${id}`, {
 			method: "PUT",
 			headers: {
 				"Content-Type": "application/json",
@@ -34,18 +34,18 @@ export const App = () => {
 			body: JSON.stringify(data),
 		});
 
-		if (response.ok) {		
-		const updatedItem = await response.json();
-		const index = index.findIndex(item => {
-			if (item.id === id) {
-				return true;
-			} else {
-				return false;
-			}
-		});
-		const updatedItems = items.toSpliced(index, 1, updatedItem);
-		setItems(updatedItems);
-		setCurrentItem(null);
+		if (response.ok) {
+			const updatedItem = await response.json();
+			const index = items.findIndex(item => {
+				if (item.id === id) {
+					return true;
+				} else {
+					return false;
+				}
+			});
+			const updatedItems = items.toSpliced(index, 1, updatedItem);
+			setItems(updatedItems);
+			setCurrentItem(null);
 		}
 	}
 
@@ -61,7 +61,7 @@ export const App = () => {
 		await fetch(`${apiURL}/items/${id}`, {
 			method: "DELETE",
 		});
-		
+
 		const filteredItems = items.filter(item => {
 			if (item.id === id) {
 				return false;
@@ -92,14 +92,11 @@ export const App = () => {
 	if (currentItem) {
 		return (
 			<main>
-				
 				<h1>{currentItem.name}</h1>
 				<button onClick={() => setIsUpdateFormShowing(!isUpdateFormShowing)}>
 					{isUpdateFormShowing ? "Hide Form" : "Show Form"}
 				</button>
-				{isUpdateFormShowing &&	(
-					<UpdateForm {...currentItem} />
-				)}
+				{isUpdateFormShowing && <UpdateForm {...currentItem} updateItem={updateItem} />}
 				<img src={currentItem.image} alt={currentItem.name} />
 				<p className="itemPrice">£{currentItem.price.toFixed(2)}</p>
 				<p className="description">{currentItem.description}</p>
@@ -111,7 +108,7 @@ export const App = () => {
 				</p>
 			</main>
 		);
-	};
+	}
 
 	return (
 		<main>
@@ -119,9 +116,7 @@ export const App = () => {
 			<button className="showForm" onClick={() => setIsFormShowing(!isFormShowing)}>
 				{isFormShowing ? "Hide Form" : "Show Form"}
 			</button>
-			{isFormShowing && (
-				<Form addItem={addItem} />
-			)}
+			{isFormShowing && <Form addItem={addItem} />}
 			<ul>
 				{items.map(item => (
 					<li key={item.id}>
@@ -135,8 +130,6 @@ export const App = () => {
 					</li>
 				))}
 			</ul>
-
-			
 		</main>
 	);
 };
