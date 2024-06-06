@@ -8,7 +8,7 @@ h1 {
     width: 100%;
     padding: 35px 12%;
     background-color: rgb(213, 211, 222);
-    background-image: linear-gradient(rgb(103, 101, 113), rgb(195, 187, 187));
+    background-image: linear-gradient(rgb(154, 145, 143), rgb(240, 229, 229));
     display: flex;
     justify-content: center;
     align-items: center;
@@ -66,13 +66,11 @@ h3 {
 }
 
 .description {
-  max-width: 200px;
-  max-height: 200px;
   display: block;
   border-radius: 5%;
-  font-size: 11px;
+  font-size: 20px;
   text-align: center;
-  margin: 0;
+  margin: 4%;
 }
 
 .itemName {
@@ -101,12 +99,9 @@ button:hover {
   transform: translate(øpx, -8px);
 }
 
-.showForm {
-  margin-left:85%;
-  
+.itemPrice {
+  font-size: 20px;
+  text-align: center;
+  padding: 2%;
+  font-weight: 600;
 }
-
-form {
-  margin-left: 85%;
-}
-

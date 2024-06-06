@@ -92,16 +92,17 @@ export const App = () => {
 	if (currentItem) {
 		return (
 			<main>
+				
+				<h1>{currentItem.name}</h1>
 				<button onClick={() => setIsUpdateFormShowing(!isUpdateFormShowing)}>
 					{isUpdateFormShowing ? "Hide Form" : "Show Form"}
 				</button>
 				{isUpdateFormShowing &&	(
 					<UpdateForm {...currentItem} />
 				)}
-				<h1>{currentItem.name}</h1>
-				<p>£{currentItem.price.toFixed(2)}</p>
 				<img src={currentItem.image} alt={currentItem.name} />
-				<p>{currentItem.description}</p>
+				<p className="itemPrice">£{currentItem.price.toFixed(2)}</p>
+				<p className="description">{currentItem.description}</p>
 				<p>
 					<button onClick={() => setCurrentItem(null)}>All Items</button>
 				</p>
@@ -129,7 +130,7 @@ export const App = () => {
 						</h2>
 						<h3>£{item.price}</h3>
 						<img src={item.image} alt="" />
-						<h3 className="description">{item.description}</h3>
+						{/* <h3 className="description">{item.description}</h3> */}
 						<h3>{item.category}</h3>
 					</li>
 				))}
