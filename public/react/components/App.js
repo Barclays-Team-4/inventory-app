@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Form } from "./Form.js";
-import { UpdateForm } from "./UpdateForm.js";
+import { UpdateForm } from "./updateForm.js";
 
 // import and prepend the api url to any fetch calls
 import apiURL from "../api";
