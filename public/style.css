@@ -92,6 +92,7 @@ button {
   text-decoration: none;
   cursor: pointer;
   width: 200px;
+
 }
 
 button:hover {
@@ -100,4 +101,12 @@ button:hover {
   transform: translate(øpx, -8px);
 }
 
+.showForm {
+  margin-left:85%;
+  
+}
+
+form {
+  margin-left: 85%;
+}
 
